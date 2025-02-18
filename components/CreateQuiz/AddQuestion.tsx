@@ -84,15 +84,14 @@ const AddQuestion = ({ onDone, qid }:{onDone:VoidFunction, qid:string}) => {
             return;
         }
 
-        // Format options as required by the API
-        const formattedOptions = options.reduce((acc, curr) => {
+        const formattedOptions = options.reduce<Record<number, string>>((acc, curr) => {
             acc[curr.id] = curr.text;
             return acc;
         }, {});
 
         const questionData = {
             quizid: qid,
-            quesid: Date.now().toString(), // Generate a unique ID for the question
+            quesid: Date.now().toString(),
             ques: questionText,
             options: formattedOptions,
             correctOption: correctOption
@@ -105,14 +104,12 @@ const AddQuestion = ({ onDone, qid }:{onDone:VoidFunction, qid:string}) => {
             const response = await axios.post('https://quizo-orpin.vercel.app/api/addQuestion', questionData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    // If you're using authentication tokens, include them here
                     'Authorization': `${token}`,
                 }
             });
 
             console.log('Question added successfully:', response.data);
             
-            // Call the onDone callback with the server response if needed
             onDone?.(response.data.question);
         } catch (error) {
             console.error('Error adding question:', error);
