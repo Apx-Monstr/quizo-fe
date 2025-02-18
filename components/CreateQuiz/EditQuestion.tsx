@@ -1,9 +1,8 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { PlusCircle, Trash2 } from "lucide-react";
 import EditableTitle from "./EditableTitle";
 import IconButton from "./Icon Button";
-import { useRouter } from 'next/router'; // Import useRouter
 import axios from 'axios';
 import { useAuth } from '@/contexts/AuthContext';
 import {

@@ -1,8 +1,7 @@
 "use client"
-
 import { useState } from 'react';
 import EditableTitle from "./EditableTitle"
-import { ExternalLink, Shuffle, ArrowDownUp, CirclePlus, Save, Trash2 } from 'lucide-react';
+import { ExternalLink, Shuffle, ArrowDownUp, CirclePlus, Trash2 } from 'lucide-react';
 import AddQuestion from './AddQuestion';
 import IconButton from './Icon Button';
 
@@ -25,9 +24,8 @@ const Header = ({title, qid, onAddQuestion}:Props) => {
     const router = useRouter();
     const [isQuestionShuffleActive, setIsQuestionShuffleActive] = useState(false);
     const [isOptionShuffleActive, setIsOptionShuffleActive] = useState(false);
-    const [quizTitle, setQuizTitle] = useState(title);
+    const quizTitle = title;
     const {token} = useAuth()
-    // handleTitleChange function to send request to the backend
     const handleTitleChange = async (newTitle:string) => {
         try {
             const response = await axios.put(`https://quizo-orpin.vercel.app/api/editTitle/${qid}`, {
@@ -44,7 +42,7 @@ const Header = ({title, qid, onAddQuestion}:Props) => {
     };
     const handleDeleteQuiz = async (quizId:string) => {
         try {
-          const response = await axios.delete(`https://quizo-orpin.vercel.app/api/delete/${quizId}`, {
+          await axios.delete(`https://quizo-orpin.vercel.app/api/delete/${quizId}`, {
             headers: {
               Authorization: token,
             },

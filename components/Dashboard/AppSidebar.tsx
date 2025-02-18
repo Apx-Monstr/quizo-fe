@@ -16,13 +16,6 @@ import {
 import { Button } from "../ui/button";
 import { useRouter } from 'next/navigation';
 
-interface Quiz {
-  id: string; // Assuming qid is a string, change to number if needed
-  title: string;
-  url: string;
-  icon: React.ElementType; // Book is likely an icon component
-}
-
 
 export function AppSidebar({activeQuizId}:{activeQuizId?:string}) {
   const [quizItems, setQuizItems] = useState([]);
