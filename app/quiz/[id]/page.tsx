@@ -11,7 +11,7 @@ import axios from 'axios';
 import { SidebarProvider,} from '@/components/ui/sidebar';
 import Edit from '@/components/CreateQuiz/Edit';
 
-export const QuizSidebar = () => {
+const QuizSidebar = () => {
   const params = useParams();
   const quizId = params?.id as string;
   return <AppSidebar activeQuizId={quizId} />;
