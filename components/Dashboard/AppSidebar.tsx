@@ -146,7 +146,12 @@ export function AppSidebar({activeQuizId}:{activeQuizId?:string}) {
                 ))}
               </SidebarMenu>
             ) : (
-              <div className="text-gray-500 p-2 text-sm">No quizzes available</div>
+              <div className="text-gray-500 p-2 text-sm">
+                <Button onClick={handleAddQuiz}>
+                  Add Quiz
+                </Button>
+                No quizzes available
+              </div>
             )}
           </SidebarGroupContent>
         </SidebarGroup>
